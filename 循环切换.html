@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>循环切换</title>
+    <style>
+        *{margin:0px;
+            padding:0px;
+        }
+        ol,ul{list-style:none;}
+        .wrap{
+            position:relative;
+            margin:10px auto;
+            width: 600px;
+            height: 500px;
+            /*border:1px solid red;*/
+            /*overflow:hidden;*/
+        }
+        #banner {
+            width: 600px;
+            height: 450px;
+        }
+        #banner img{
+            position:absolute;
+            display:none;
+            top:0px;
+            width: 600px;
+            height: 450px;
+        }
+        #banner .show{
+            display:block;
+        }
+        .wrap span{
+            width: 30px;
+            height: 40px;
+            color:#fff;
+            text-align:center;
+            line-height:40px;
+            font-size:30px;
+            cursor:pointer;
+            background:#ccc ;
+            -ms-user-select: none;
+        }
+        .switch1{
+            position:absolute;
+            top:225px;
+            left:0px;
+        }
+        .switch2{
+            position:absolute;
+            top:225px;
+            right:0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+
+        <div id="banner">
+            <img class="show" src="images/timg.jpg" alt="图片">
+            <img src="images/1132113613091356_b.jpg" alt="图片">
+            <img src="images/untitled.jpg" alt="图片">
+            <img src="images/思考人生1.jpg" alt="图片">
+            <img src="images/未来-1.jpg" alt="图片">
+        </div>
+
+        <span class="switch1">
+                    <
+                </span>
+        <span class="switch2">
+                    >
+                </span>
+
+    </div>
+
+    <script>//定义变量；
+        let oBan = document . getElementById ("banner"),
+            oImg = document . querySelectorAll ("#banner img"),
+            oSpan = document .querySelectorAll (".wrap span"),
+            length = oImg .length,
+            index = 0;
+        // console .log ("oImg.length" );
+
+        oSpan[0].onclick = function(){//左按钮的点击事件；
+            let nowIng = oImg[index];
+            index++;
+            nowIng .className = "";
+
+            if(index>length-1){
+                index=0;
+            }
+            let nexTex = oImg[index];
+            nexTex .className ="show";
+        }
+
+    oSpan[1].onclick = function(){//右按钮的点击事件；
+        let nowMing = oImg[index];
+        index--;
+        nowMing .className = "";
+
+        if(index<0){
+            index=length-1;
+        }
+        let newMing = oImg[index];
+        newMing .className = "show";
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>循环加切换</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        ol,ul{list-style:none;}
+        a{text-decoration:none;}
+        #wrap{
+            position:relative;
+            margin:50px auto;
+            width: 820px;
+            height: 490px;
+        }
+        #img{
+            position:relative;
+            width: 100%;
+            height:340px;
+        }
+        #img ul li{
+            display:none;
+            position:absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height: 100%;
+        }
+        #img ul .show{
+            display:block;
+        }
+
+        #wrap span{
+            display:inline-block;
+            position:absolute;
+            width: 30px;
+            height: 30px;
+            background: #cccccc ;
+            font-zise:14px;
+            color:#fff;
+            line-height:30px;
+            text-align:center;
+            cursor:pointer;
+        }
+       .left{
+           top:35%;
+            left:0px;
+        }
+        .right{
+            top:35%;
+            right:0px;
+        }
+        #text{
+            position:absolute;
+            bottom:150px;
+            left:363px;
+            width: 80px;
+            height: 15px;
+            background: rgba(192,192,192, .5);
+            border-radius:5px;
+            /*line-height:15px;*/
+        }
+        #text ul{
+            width: 100%;
+            height: 100%;
+            /*line-hright:15px;*/
+        }
+        #text ul li{
+            float:left;
+            margin-left:5px;
+            margin-top:2px;
+            width: 10px;
+            height: 10px;
+            background: #cccccc ;
+            border-radius: 50%;
+            cursor:pointer;
+        }
+        #text ul .active{
+            background: darkorange ;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div id="img">
+            <ul>
+                <li class="show"><a href=""><img src="images/73fd44103b3b8ccec03735b64296a21b.jpg" alt=""></a></li>
+                <li><a href=""><img src="images/95bb73992e6a223cb9dbad1c4353bc4b.jpg" alt=""></a></li>
+                <li><a href=""><img src="images/cf118040c0e6552751b262dfaf0939ea.jpg" alt=""></a></li>
+                <li><a href=""><img src="images/ed34834adabad4591d2a4130f9ef5c42 (1).jpg" alt=""></a></li>
+                <li><a href=""><img src="images/cf118040c0e6552751b262dfaf0939ea.jpg" alt=""></a></li>
+            </ul>
+        </div>
+
+            <span class="left">
+                <
+            </span>
+            <span class="right">
+                >
+            </span>
+
+        <div id="text">
+            <ul>
+                <li class="active"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+
+    </div>
+
+
+    <script>
+        let oWrap = document .getElementById ("wrap"),
+            oBtn = document .querySelectorAll ("#wrap span"),
+            aImag = document .querySelectorAll ("#img ul li"),
+            aTextLi = document .querySelectorAll ("#text ul li");
+        let index = 0;//浏览器显示的图片
+        let lenght = aImag .length;
+
+           oBtn[0] .onclick = function(){
+
+              aImag [index] .className ="";
+              aTextLi [index] .className ="";
+               index++;
+
+               if(index>=lenght -1){
+                    index=0;
+               }
+               aImag [index] .className ="show";
+               aTextLi [index] .className = "active";
+           }
+
+        oBtn[1] .onclick = function(){
+
+            aImag [index] .className ="";
+            aTextLi [index] .className ="";
+            index--;
+
+            if(index<=0){
+                index=lenght -1;
+            }
+            aImag [index] .className ="show";
+            aTextLi [index] .className = "active";
+        }
+
+
+
+            for(let i=0;i<lenght ;i++){
+
+                aTextLi [i].onclick = function(){
+
+                    aTextLi [index] .className ="";
+                    aImag [index] .className = "";
+
+                    index = i;
+
+                    aTextLi [index] .className = "active";
+                    aImag [index] .className = "show";
+                }
+
+            }
+
+    </script>
+</body>
+</html>

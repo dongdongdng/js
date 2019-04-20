@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点击改变文字大小</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        ul,ol{list-style: none;}
+        a{text-decoration: none;}
+        #wrap{
+            margin:auto;
+            padding:5px;
+            width: 800px;
+            border:1px solid royalblue;
+            font-size:14px;
+        }
+        #wrap span{
+            display: inline-block;
+            margin:10px 20px;
+            width: 20px;
+            height: 20px;
+            font-size:18px;
+            text-align:center;
+            line-height:20px;
+            background-color:#cccccc;
+            cursor:pointer;
+        }
+        #wrap img{
+            margin-left:50px;
+            margin-top:10px;
+            width: 700px;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <span>+</span>
+        <span>-</span>
+
+        <p>
+            世界上唯一可不劳而获的就是贫穷，唯一可以无中生有的是梦想。
+            没有哪件事，不动手就可以实现。世界虽然残酷，但只要你愿意走，总会有路；
+            看不到美好，是因为你没有坚持走下去。前进不必遗憾，若是美好，叫做精彩；若是糟糕，
+            叫做经历世界上唯一可不劳而获的就是贫穷，唯一可以无中生有的是梦想。没有哪件事，不动手就可以实现。世界虽然
+            残酷 ，但只要你愿意走，总会有路；看不到美好，
+            是因为你没有坚持走下去。前进不必遗憾，若是美好
+            ，叫做精彩；若是糟糕，叫做经历记忆有时候就像一间房，房门随意的虚掩着，看似散漫，
+            实则笃定，就那么默默的守着自己的安静，日子久了，纵是蒙了灰尘、
+            挂了蛛网，却仍无摇曳、响动，终于让你忽略了门的存在，从此有一些房间，就再也不会打开了，就像不存在一样
+            你的时间有限，所以不要为别人而活。不要被教条所限，不要活在别人的观念里。不要让别人的意见
+            左右自己内心的声音。最重要的是，勇敢的去追随自己的心灵和直觉，
+            只有自己的心灵和直觉才知道你自己的真实想法，其他一切都是次要
+        </p>
+
+        <p>
+            世界上唯一可不劳而获的就是贫穷，唯一可以无中生有的是梦想。
+            没有哪件事，不动手就可以实现。世界虽然残酷，但只要你愿意走，总会有路；
+            看不到美好，是因为你没有坚持走下去。前进不必遗憾，若是美好，叫做精彩；若是糟糕，
+            叫做经历世界上唯一可不劳而获的就是贫穷，唯一可以无中生有的是梦想。没有哪件事，不动手就可以实现。世界虽然
+            残酷 ，但只要你愿意走，总会有路；看不到美好，
+            是因为你没有坚持走下去。前进不必遗憾，若是美好
+            ，叫做精彩；若是糟糕，叫做经历记忆有时候就像一间房，房门随意的虚掩着，看似散漫，
+            实则笃定，就那么默默的守着自己的安静，日子久了，纵是蒙了灰尘、
+            挂了蛛网，却仍无摇曳、响动，终于让你忽略了门的存在，从此有一些房间，就再也不会打开了，就像不存在一样
+            你的时间有限，所以不要为别人而活。不要被教条所限，不要活在别人的观念里。不要让别人的意见
+            左右自己内心的声音。最重要的是，勇敢的去追随自己的心灵和直觉，
+            只有自己的心灵和直觉才知道你自己的真实想法，其他一切都是次要
+        </p>
+
+        <img src="images/1132113613091356_b.jpg" alt="">
+    </div>
+
+    <script>//定义变量
+        let oWrap = document .getElementById ("wrap"),
+            oSpan = document .querySelectorAll ("#wrap span"),
+            oText = document .getElementsByTagName ("p");
+        let font = 14;//定义font值
+
+        oSpan[0].onclick = function(){//加号按钮的点击事件
+        font++;
+        oWrap .style .fontSize = font +'px';
+    }
+
+    oSpan[1].onclick = function(){//加号按钮的点击事件
+        font--;
+        oWrap .style .fontSize = font +'px';
+    }
+    </script>
+</body>
+</html>

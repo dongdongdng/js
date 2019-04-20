@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>二级下拉导航</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        ul,ol{
+            list-style:none;
+        }
+        #wrap{
+            width: 300px;
+            margin:50px auto;
+        }
+
+        #wrap p{
+            /*margin-top:45px;*/
+            width: 100%;
+            height: 50px;
+            font-size:16px;
+            font-weight: bold;
+            color:#fff;
+            background:#f17c67;
+            line-height:50px;
+            text-indent:1em;
+            cursor:pointer;
+        }
+        #wrap ul {
+            display:none;
+        }
+        #wrap .show{
+            display:block;
+        }
+        #wrap ul li{
+            width: 100%;
+            height: 50px;
+            margin-top:2px;
+            font-size:14px;
+            background:#ffc09f;
+            line-height:50px;
+            text-indent:5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div id="top">
+            <p>同事</p>
+            <ul>
+                <li>abby</li>
+                <li>玛丽安</li>
+                <li>小胖</li>
+            </ul>
+        </div>
+        <div id="conten">
+            <p>好友</p>
+            <ul>
+                <li>阿月</li>
+                <li>阿瑶</li>
+                <li>靖哥</li>
+            </ul>
+        </div>
+        <div id="bottom">
+            <p>家人</p>
+            <ul>
+                <li>王志辉</li>
+                <li>瑶瑶</li>
+                <li>陈智豪</li>
+            </ul>
+        </div>
+    </div>
+
+
+    <script>
+
+            let aP = document .querySelectorAll ("#wrap p"),
+                aUl = document .querySelectorAll ("#wrap ul");
+            let len =aP .length ;
+            let index = 0;
+
+            for(let i=0;i<len;i++){
+                aP [i] .onclick =function() {
+                  aUl [index] .className ="";
+
+                  index = i;
+
+                  aUl [index] .className ="show";
+                }
+
+            }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>星级评分</title>
+        <style>
+           *{
+               margin:0;
+               padding:0;
+           }
+            ul,ol{
+                list-style:none;
+            }
+            #wrap{
+                width: 500px;
+                height: 100px;
+                /*border:1px solid red;*/
+                margin:50px auto;
+                user-select :none;
+            }
+           #wrap span{
+               float:left;
+               font-size:14px;
+               font-weight: bold;
+               color:red;
+               line-height:100px;
+           }
+           #wrap ul {float:left;}
+
+           #wrap ul li{
+               width: 20px;
+               height: 20px;
+               float:left;
+               background-image:url("images/ad628dd1-1fff-3a6e-a35f-156d9b2dc712.gif");
+               margin:40px 0 0 5px;
+               cursor:pointer;
+           }
+           #wrap  .show{
+               background-image:url("images/79e984ec-2af6-3660-b7b8-5f19bbdeb5d6.gif");
+           }
+
+           #text{
+               float:left;
+               width: 180px;
+               height: 78px;
+               border:1px solid #ccc;
+               margin:10px 0 0 10px;
+               font-size:12px;
+               line-height:78px;
+               text-indent:5px;
+           }
+
+        </style>
+</head>
+<body>
+    <div id="wrap">
+        <span>星级评分：</span>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+
+        <p id="text">提示：请认真给当前文章打分</p>
+    </div>
+
+    <script>
+        let aLi =document .querySelectorAll ("#wrap ul li"),
+            aUl =document .querySelector ("#wrap ul"),
+            oTxt =document .getElementById ("text"),
+            index = -1,
+            len =aLi .length ,
+            arrTxt =[
+                "提示：请认真给当前文章打分",
+                "超级辣鸡哦",
+                "辣鸡哦",
+                "一般啦",
+                "好哦",
+                "超级棒"
+
+            ];
+
+            //li鼠标移入事件
+
+        for(let i=0;i<len ;i++){
+            aLi [i] .onmouseenter =function(){
+                for(let j=0;j<len;j++){
+                    aLi [j] .className =j<=i?"show":"";
+                    // if(j<=i){
+                    //     aLi [j] .className ="show";
+                    // }else{
+                    //     aLi [j] .className ="";
+                    // }
+                }
+                oTxt .innerText = arrTxt [i+1];
+            }
+
+            //li鼠标点击事件
+             aLi [i] .onclick = function (){
+                index=i;
+             }
+
+            //ul的鼠标移除事件
+            aUl .onmouseleave =function(){
+                for(let i=0;i<len;i++){
+                    aLi [i] .className = i<=index?"show":"";
+                    // if(i<=index){
+                    //     aLi [i] .className ="show";
+                    // }else{
+                    //     aLi [i] .className ="";
+                    // }
+                }
+                oTxt .innerText = arrTxt [index +1];
+
+            }
+        }
+    </script>
+
+</body>
+</html>
