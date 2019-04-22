@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>天猫侧边栏</title>
+
+    <style>
+        *{
+            margin:0px;
+            padding:0px;
+        }
+        ul,ol{
+            list-style:none;
+        }
+        body{
+            position: relative;
+            background:pink;
+        }
+        #wrap .main{
+            position:fixed;
+            right:-35px;
+            top:0px;
+            width: 35px;
+            height: 100%;
+            background-color: #000000;
+            transition: right .5s;
+        }
+        #wrap .main:hover{
+            right:0;}
+        #wrap .main ul li{
+            position: relative;
+            width: 35px;
+            height: 35px;
+            margin: 5px 0;
+            cursor: pointer;
+        }
+        #wrap .main ul li:hover .txt{
+            visibility: visible;
+            right:35px;
+            opacity:1;
+        }
+        #wrap .main ul li:hover{
+            background-color: #f00;
+        }
+
+        #wrap .main ul .list{
+            margin:150px 0 100px;
+        }
+        #wrap .main ul li i{
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+        }
+        #wrap .main ul li .txt{
+            visibility: hidden;
+            position: absolute;
+            right:100px;
+            top: 0;
+            width: 90px;
+            height: 35px;
+            background-color: #494949;
+            text-align: center;
+            line-height: 35px;
+            font-size: 12px;
+            color: #fff;
+            transition: right .5s,opacity .5s;
+            opacity:0;
+        }
+      .txt::after {
+          position:absolute;
+          right:-7px;
+          top:30%;
+          display: inline-block;
+          content:"";
+          width: 0px;
+          height: 0px;
+          /*background-color: #ff6600;*/
+          border-top:7px solid transparent;
+          border-left:7px solid #494949;
+          border-right:none;
+          border-bottom: 7px solid transparent;
+      }
+        #wrap .car{
+            position: fixed;
+            z-index:1;
+            right: 0;
+            top: 186px;
+            width: 35px;
+            height: 98px;
+            background-color: #000;
+            color:#fff;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        #wrap  .car:hover{
+            background-color: #f00;
+
+        }
+        #wrap .car i{
+            display: block;
+            width: 35px;
+            height: 35px;
+            background-image: url("images/mbar-tab-logo-cart-nologin-1x.png");
+        }
+        #wrap .car:hover i{
+            background-image: url("images/mbar-tab-logo-cart-1x.png");
+
+        }
+        #wrap .car p{
+            /*position: absolute;*/
+            /*top: 0px;*/
+            /*left: 0;*/
+            width: 20px;
+            color:#fff;
+            font-size:14px;
+            margin-left: 6px;
+            /*padding-top: 30px;*/
+            /*padding-bottom: 33px;*/
+            text-align: center;
+            border:none;
+            writing-mode:horizontal-tb;
+        }
+        #wrap .car:hover ~ .main{
+            right:0;
+        }
+
+
+    </style>
+
+
+</head>
+<body>
+    <div id="wrap">
+        <div class="car">
+            <i></i>
+            <p>购物车</p>
+        </div>
+
+        <div class="main">
+            <ul>
+                <li class="list">
+                    <i style="background-image: url('images/tab-logo-prof-1x.png')"></i>
+                    <div class ="txt">会员权益</div>
+                </li>
+                <li>
+                    <i style="background-image: url('images/mbar-tab-logo-asset-1x.png')"></i>
+                    <div class ="txt">会员权益</div>
+                </li>
+                <li>
+                    <i style="background-image: url('images/3.png')"></i>
+                    <div class="txt">会员权益</div>
+                </li>
+                <li>
+                    <i style="background-image: url('images/4.png')"></i>
+                    <div class="txt">会员权益</div>
+                </li>
+                <li>
+                    <i style="background-image: url('images/5.png')"></i>
+                    <div class="txt">会员权益</div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+</body>
+</html>
