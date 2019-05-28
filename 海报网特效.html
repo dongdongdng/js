@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>海报网特效</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        ul,ol{
+            list-style:none;
+        }
+        #wrap{
+            width: 1080px;
+            height: 350px;
+            margin: 50px auto;
+            font-size: 14px;
+        }
+        #top{
+            position: relative;
+            width: 100%;
+            height: 50px;
+            background-color: aliceblue;
+        }
+        #top .txt{
+            width: 150px;
+            height: 100%;
+            color: white;
+            line-height: 50px;
+            text-align: center ;
+            background-color: #000;
+        }
+        #top ul{
+            position:absolute ;
+            left:206px;
+            top:30%;
+        }
+        #top ul li{
+            position: relative;
+            float: left;
+            margin-right:25px;
+            cursor: pointer ;
+            transition: color .2s;
+        }
+        #top ul li:hover{
+            color :#db3a45;
+        }
+        #top ul li::after {
+            position: absolute;
+            left:0;
+            top:0;
+            right:0;
+            bottom: -32px;
+            margin:auto;
+            content: "";
+            width: 0;
+            height: 2px;
+            background-color: brown;
+            transition: width  .3s;
+        }
+        #top ul .active:after {
+            width: 100%;
+        }
+        #content {
+            position: relative;
+            margin-top:20px;
+            width: 100%;
+            height: 255px;
+            /*border:1px solid red;*/
+            overflow: hidden;
+        }
+        #content .list{
+            position:absolute ;
+            top:0;
+            left:0;
+            width: 1200px;
+            height: 100%;
+        }
+        #content .list li{
+            float: left;
+            margin-right: 31px;
+        }
+        #content .list{
+            display: none;
+        }
+        #content .active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div id="top">
+            <p class="txt">独家精品策划</p>
+            <ul>
+                <li class="active">全部</li>
+                <li>列表一</li>
+                <li>列表二</li>
+                <li>列表三</li>
+                <li>列表四</li>
+            </ul>
+        </div>
+        
+        <div id="content">
+            <ul class="list active">
+                <!--<li><img src="img/1.jpg " alt=""></li>-->
+                <!--<li><img src="img/2.jpg " alt=""></li>-->
+                <!--<li><img src="img/3.jpg " alt=""></li>-->
+            </ul>
+
+            <ul class="list ">
+                <!--<li></li>-->
+                <!--<li></li>-->
+                <!--<li></li>-->
+            </ul>
+
+            <ul class="list">
+                <!--<li></li>-->
+                <!--<li></li>-->
+                <!--<li></li>-->
+            </ul>
+
+            <ul class="list">
+                <!--<li></li>-->
+                <!--<li></li>-->
+                <!--<li></li>-->
+            </ul>
+
+            <ul class="list">
+                <!--<li></li>-->
+                <!--<li></li>-->
+                <!--<li></li>-->
+            </ul>
+
+        </div>
+    </div>
+
+
+    <script>
+        (function (date) {
+            //获取需要用到的变量
+            let aLi =document .querySelectorAll ("#top ul li"),
+                oImg = document .querySelectorAll ("#content .list");
+
+            let index =0;
+            // console .log(oImg );
+                //遍历生成content内容
+                    for(let i=0;i<date .length ;i++){
+                        let thisData = date [i];
+                        let {id ,type ,src}= thisData ;
+                        oImg [type+1].innerHTML +=`<li><img src="${src }"></li>`;
+
+                        if(i<3){
+                            oImg [0].innerHTML +=`<li><img src="${src }" alt=""></li>`;
+
+                        }
+                    }
+
+                    //切换选项卡
+                    for(let i=0;i<aLi .length ;i++){
+                        aLi [i].onmousemove =function () {
+                            aLi [index ].classList .remove ("active");
+                            oImg [index ].classList .remove ("active");
+
+                            index =i;
+
+                            aLi [index ].classList .add ("active");
+                            oImg [index ].classList .add  ("active");
+                        }
+                    }
+
+        })([
+            {
+                id:0,
+                src : "img/1.jpg",
+                type:0
+            },
+            {
+                id:0,
+                src:"img/2.jpg",
+                type:2
+            },
+            {
+                id:0,
+                src:"img/3.jpg",
+                type:1
+            },
+            {
+                id:0,
+                src:"img/4.jpg",
+                type:3
+            },
+            {
+                id:0,
+                src:"img/5.jpg",
+                type:2
+            },
+            {
+                id:0,
+                src:"img/6.jpg",
+                type:3
+            },
+            {
+                id:0,
+                src:"img/7.jpg",
+                type:1
+            },
+            {
+                id:0,
+                src:"img/8.jpg",
+                type:0
+            },
+            {
+                id:0,
+                src:"img/9.jpg",
+                type:1
+            },
+            {
+                id:0,
+                src:"img/10.jpg",
+                type:2
+            },
+            {
+                id:0,
+                src:"img/11.jpg",
+                type:3
+            },
+            {
+                id:0,
+                src:"img/12.jpg",
+                type:0
+            }
+        ]);
+    </script>
+</body>
+</html>
