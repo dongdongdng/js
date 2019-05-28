@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查找替换</title>
+    <style>
+        *{
+            margin:0px;
+            padding:0px;
+        }
+        ul,ol{
+            list-style:none;
+        }
+        #Wrap{
+            width: 500px;
+            margin:20px auto;
+        }
+        #replace {
+            margin-left:10px;
+        }
+        button {
+            font-size:12px;
+        }
+        p{
+            font-size:14px;
+            text-align:center ;
+            margin:10px 5px 0 5px;
+        }
+        span{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+<div id="Wrap">
+    <input type="text" id="search">
+    <button id="btn">确定</button>
+
+    <input type="text" id="replace">
+    <button id="ti">替换</button>
+
+    <p>站在衡山之巅，会是一种什么样的感觉？
+        人的身体变得渺小，小如一粒尘埃，心灵却可以自由飞翔，豪气万丈。这是我站在衡山顶上，脚踩云海时产生的感受。
+        上衡山，已经没有攀登的过程。盘山公路一直修到了山顶，仿佛一把利剑，缎带飘飘，在崇山峻岭间，曲曲弯弯，划破天惊，直指巅峰。这柄剑过于猖狂，只差一点，就削平山峰，它在距离顶峰数百米的地方嘎然而止。
+        我跟着剑锋，几乎没有费太多的力气就顺利登顶。我站在衡山顶上的时候，另外有一支真正意义上的登山队正在青藏高原的西南部向喜马拉雅山的主峰进行最后的冲刺，他们是无畏的勇士。而我，只是一个偷懒的猎人，如果我的身体能够长出翅膀，我贪婪的眼睛或许将俯瞰南岳，沿山脉西行，去湘西看沱江如何清澈流淌。这条盘山弯道，硬生生在衡山秀丽的腰肢间勒出一道印痕，撕裂了山脉流畅的曲线。它为行人提供了登顶的方便，却为自然留下了一处败笔。类似的败笔在我们的视线所及，随处可见，它让人类变得懒惰了，上山的旅人享受不到登山的过程，从一开始，就只想要一览众山的结果。这种心理，恰好符合这个时代大多数人的心理状态。这种状态，会持续多久？如果不可逆转，我们生存的这个世界将会变成什么样子？
+        也许是我多虑了，因为我在坐车上下山的途中，见到了一些徒步登山者。他们是应该得到尊重的少数人，他们也许疲惫，他们也许在面对汽车和索道时也想到过放弃，但是他们坚持下来了，他们正在体验我们永远也无法体验到的快乐了。用自己的双足征服衡山，对于一个登山者而言，是多么了不起的记忆。我上了衡山之巅，但是我征服衡山了么？</p>
+</div>
+    <script>
+            let oSea = document .getElementById ("search"),
+                oP = document .querySelector ("#Wrap p"),
+                oBtn = document .getElementById ("btn"),
+                oRep = document .getElementById ("replace"),
+                oTi = document .getElementById ("ti");
+
+            // console .log(oP );
+
+
+                val1 = oRep .value ;
+            let ohtml =oP .innerHTML ;
+
+            // console .log(typeof (oP ));
+
+        //确定按钮发生点击事件时的变化
+        oBtn .onclick = function () {
+            let val = oSea .value ;
+            let arr = ohtml .split (val );
+            let txt =arr .join ("<span>"+val +"</span>");
+            oP .innerHTML =txt ;
+        }
+
+        //替换按钮点击后发生的变化
+        oTi .onclick = function () {
+            let val = oSea .value ;
+            let val1 = oRep .value ;
+            let arr1 = ohtml .split (val );
+            let txt1 = arr1 .join ("<span>"+val1 +"</span>");
+            oP .innerHTML = txt1 ;
+        }
+
+    </script>
+</body>
+</html>
