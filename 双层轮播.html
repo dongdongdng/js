@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>双层轮播</title>
+    <style>
+       *{
+           margin:0;
+           padding:0;
+       }
+        ul,ol{
+            list-style:none;
+        }
+        #wrap {
+            position:relative ;
+            margin:20px auto;
+            width: 600px;
+            height: 300px;
+            /*border:1px solid #ccc;*/
+        }
+        #left{
+            float:left;
+        }
+        #left ul li{
+            width: 100px;
+            height: 50px;
+            font-size:12px;
+            line-height:50px;
+            text-align:center;
+            color:#fff;
+            background-color: brown;
+            border-bottom:1px solid orange;
+            cursor: pointer ;
+        }
+        #left ul .on{
+            background-color: darkorange;
+        }
+        #rh{
+           position: absolute;
+            left:100px;
+            top:0px;
+            width: 480px;
+            height: 300px;
+            /*border:1px solid red;*/
+        }
+        #rh .right {
+            display: none;
+        }
+      #rh .on {
+           display: block;
+       }
+       .right .list li{
+           display:none ;
+           position: absolute;
+           top:0;
+           left:0;
+       }
+       .right .list .on{
+           display: block;
+       }
+       .right .list img{
+           width: 480px;
+           height: 300px;
+       }
+       .tab{
+            position: absolute;
+            bottom :0;
+            left:10px;
+            width: 200px;
+        }
+       .tab span{
+           display: inline-block;
+           width: 30px;
+           height: 30px;
+           line-height: 30px;
+           text-align: center ;
+           background-color: darkorange;
+           cursor: pointer ;
+       }
+
+    </style>
+<body>
+        <div id="wrap">
+            <div id="left">
+                <ul>
+                    <li class="on">穿越时空的少女</li>
+                    <li>给桃子的信</li>
+                    <li>言叶之庭</li>
+                </ul>
+            </div>
+
+            <div id="rh">
+            <div class="right on">
+                <ul class="list">
+                    <li class="on"><img src="img/chuan.jpg " alt=""></li>
+                    <li><img src="img/yue.jpg " alt=""></li>
+                    <li><img src="img/shi.jpg " alt=""></li>
+                    <li><img src="img/kong.jpg " alt=""></li>
+                </ul>
+
+                <div class="tab">
+                    <span>1</span>
+                    <span>2</span>
+                    <span>3</span>
+                    <span>4</span>
+                </div>
+            </div>
+
+
+            <div class="right">
+                <ul class="list">
+                    <li class="on"><img src="img/tao.jpg   " alt=""></li>
+                    <li><img src="img/zi.jpg  " alt=""></li>
+                    <li><img src="img/xin.jpg  " alt=""></li>
+                    <li><img src="img/xia.jpg  " alt=""></li>
+                    <li><img src="img/tian.jpg   " alt=""></li>
+                </ul>
+
+                <div class="tab">
+                    <span>1</span>
+                    <span>2</span>
+                    <span>3</span>
+                    <span>4</span>
+                    <span>5</span>
+                </div>
+            </div>
+
+            <div class="right">
+                <ul class="list">
+                    <li class="on"><img src="img/yan.jpg  " alt=""></li>
+                    <li><img src="img/ye.jpg  " alt=""></li>
+                    <li><img src="img/zhi.jpg  " alt=""></li>
+                    <li><img src="img/ting.jpg  " alt=""></li>
+                </ul>
+
+                <div class="tab">
+                    <span>1</span>
+                    <span>2</span>
+                    <span>3</span>
+                    <span>4</span>
+                </div>
+            </div>
+            </div>
+        </div>
+
+
+        <script>
+            (function () {
+                let oLeft = document .querySelectorAll (" #left ul li"),
+                    oRight = document .querySelectorAll ("#rh .right"),
+                    oList = document .querySelectorAll ("#rh .right .list"),
+                    oTab =document .querySelectorAll ("#rh .right .tab"),
+                    index=0;//定义一个变量
+                // console .log(oRight );
+                //给左边的li都添加上鼠标移动事件
+                for(let i=0;i<oLeft .length ;i++){
+                    oLeft [i].onmouseover =function () {
+                        if (index === i)return ;
+                        // console .log(1);
+                        oLeft [index ].className ="";
+                        oRight [index ].className ="right";
+                        index =i;//index发生变化
+                        oLeft [index ].className ="on";
+                        oRight [index ].className ="right on";
+                        // fn(i);
+                    };
+
+                }
+                    fn(0);
+                fn(1);
+                fn(2);
+                //右侧切换显示
+                function fn(i) {
+                    let rightLi = oList [i].querySelectorAll("li"),
+                        tabLi = oTab [i] .querySelectorAll (" span"),
+                        index = 0,
+                        len1 = rightLi .length ;
+                    // console .log (tabLi );
+                    //当tab下的span添加鼠标移动事件
+                    for (let j=0;j<len1;j++)
+                    tabLi [j].onclick = function () {
+                        if(index === j)return ;
+                        // console .log (1);
+                        rightLi [index ].classList .remove ("on");
+                        index = j;
+                        rightLi [index ].classList .add ("on");
+                    }
+                }
+            })();
+        </script>
+</body>
+</html>
