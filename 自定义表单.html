@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义表单</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        ul,ol{
+            list-style:none;
+        }
+        #wrap{
+            margin:20px auto;
+            width: 200px;
+            border:1px solid #ccc;
+            border-radius: 20px;
+            font-size: 14px;
+            user-select: none;
+        }
+        #top{
+            padding-top:20px;
+            box-sizing: border-box;
+        }
+        #top .list li{
+            width: 100%;
+            height: 40px;
+            text-indent: 29px;
+            line-height: 40px;
+            background-image: url("img/1.jpg");
+            background-repeat: no-repeat ;
+            background-position: 5px 10px;
+            cursor: pointer ;
+        }
+        #top .list .show{
+            background-image: url("img/2.jpg");
+        }
+        #bottom{
+            padding-bottom: 20px;
+        }
+        #bottom span{
+            display: inline-block;
+            height: 30px;
+            font-size: 14px;
+            line-height: 30px;
+            text-indent: 30px;
+            cursor: pointer ;
+        }
+        .all{
+            background-image: url("img/1.jpg ");
+            background-repeat: no-repeat ;
+            background-position: 5px 6px;
+        }
+        #bottom .on{
+            background-image: url("img/2.jpg");
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div id="top">
+            <ul class="list" >
+                <!--<li></li>-->
+                <!--<li></li>-->
+                <!--<li></li>-->
+                <!--<li></li>-->
+                <!--<li></li>-->
+                <!--<li></li>-->
+                <!--<li></li>-->
+            </ul>
+        </div>
+        <div id="bottom">
+            <span class="all">全选</span>
+            <span class="fan"> 反选</span>
+        </div>
+    </div>
+
+
+    <script>
+        (function (date) {
+            let oUl = document .querySelector (".list"),
+                oAll = document .querySelector (".all"),
+                oFan = document .querySelector (".fan"),
+                html="";
+
+            let aLi = document .getElementsByTagName ("li");
+            let num =0;//定义一个数值记录
+            let len =date .length ;
+            // console .log(oFan );
+
+            {
+                //生成li内容
+                for(let i=0;i <date .length ;i++){
+                    let color =["#996699","#9999cc","#ccccff"];
+                    html +=`<li style="background-color: ${color [i%color .length ]}">${date [i].txt}</li>`;
+                }
+                oUl .innerHTML = html;
+            }
+
+            //遍历给每个li都添加上点击事件
+            {
+                for(let i=0;i<len;i++){
+                    aLi [i].onclick = function () {
+                        this.classList .toggle ("show");
+
+                        //判断li是否都添加上了显示类名
+                        if (this.classList .contains ("show")){
+                            num++;
+                        }else {
+                            num --;
+                        }
+
+                        if (num === len){
+                            oAll .classList .add ("on");
+                        }else {
+                            oAll .classList .remove ("on");
+                        }
+                    }
+
+                }
+                // fn(aLI ,len );
+            }
+
+            //全选跟反选的点击事件
+            {
+                //全选按钮的点击事件
+                oAll.onclick = function () {
+                    oAll.classList.toggle("on");
+
+                    //判断全选按钮是否添加的类名
+                    if (oAll.classList.contains("on")) {
+                        for (let i = 0; i < len; i++) {
+                            aLi [i].classList.add("show");
+                            num = len;
+                        }
+                    }else {
+                        for (let i=0;i<len;i++){
+                            aLi [i].classList .remove ("show");
+                            num =0;
+                        }
+                    }
+
+                }
+
+                //反选按钮的点击事件
+                oFan .onclick = function () {
+                    for (let i=0;i<len;i++){
+                        aLi [i].classList .toggle ("show");
+                        num = len - num ;
+                    }
+                }
+
+            }
+
+
+        })([
+            {
+                txt:"吴彦祖"
+            },
+            {
+                txt:"金城武"
+            },
+            {
+                txt:"刘昊然"
+            },
+            {
+                txt:"梁博"
+            },
+            {
+                txt:"小栗旬"
+            },
+            {
+                txt:"小李子"
+            },
+            {
+                txt:"柳俊烈"
+            }
+        ]);
+    </script>
+</body>
+</html>
