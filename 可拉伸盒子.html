@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>可拉伸的盒子</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #wrap{
+            position: relative;
+            margin:150px auto;
+            width: 100px;
+            height: 100px;
+            background-color: cornflowerblue;
+        }
+        #drag .e{
+            position: absolute;
+            right :0px;
+            top:0px;
+            height: 100px;
+            width: 2px;
+            background-color: darkorange;
+            cursor: e-resize ;
+        }
+        #drag .w{
+            position: absolute;
+            left:0px;
+            top:0px;
+            width: 2px;
+            height: 100px;
+            background-color: darkorange;
+            cursor: w-resize  ;
+        }
+        #drag .n{
+            position: absolute;
+            left:0px;
+            top:0px;
+            width: 100px;
+            height: 2px;
+            background-color: darkorange;
+            cursor: n-resize  ;
+        }
+        #drag .s{
+            position: absolute;
+            bottom:0px;
+            left:0px;
+            width: 100px;
+            height: 2px;
+            background-color: darkorange;
+            cursor: s-resize  ;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="wrap">
+        <div id="drag">
+            <p class="e"></p>
+            <p class="w "></p>
+            <p class="s" ></p>
+            <p class="n"></p>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        let aP = [...document .querySelectorAll ("#drag p")],
+            oWrap = document .getElementById ("wrap");
+
+        //获取wrap的宽高
+        let width = oWrap .offsetWidth ,
+            height = oWrap .offsetHeight ;
+
+        //获取left 跟top值
+        let left = oWrap .offsetLeft ,
+            Top = oWrap .offsetTop ;
+
+        //最大的left跟top值
+        let maxLeft = left + width +4 +"px";
+        let maxTop = top + height + 4 +"px";
+
+        // console .log (height );
+
+        aP .forEach ((ele ,index)=>{
+           //鼠标的按下事件
+            ele.onmousedown = function (ev) {
+                let cx = ev.clientX,
+                    cy = ev.clientY;
+
+                //鼠标移动事件
+                document.onmousemove = function (ev) {
+                    //判断是移动的第几个
+                    if (index === 0) {
+                        //获取当前的鼠标位置
+                        let mx = ev.clientX;
+
+                        let x = mx - cx;
+
+                        oWrap.style.width = width + x + "px";
+                    }
+
+                    if (index === 2) {
+                        let my = ev.clientY;
+                        let y = my - cy;
+
+                        oWrap.style.height = height + y + "px";
+                    }
+
+                    if (index === 1) {
+                        let mx = ev .clientX ;
+                        let x =mx -cx ;
+                        left = Math.min(left , maxLeft);
+                        oWrap.style.width = width - x + 'px';
+                        width = Math.max(width,4);
+                        oWrap.style.left = left + x +'px';
+                        left = Math.min(left , maxLeft);
+
+                    }
+
+                    if (index === 3) {
+                        let nY = ev.clientY;
+                        let y_ = nY - cy ;
+
+                        height = Math.max(height,10);
+
+                        Top = Math.min(Top ,maxTop);
+                        oWrap.style.height = height - y_ + 'px';
+                        oWrap.style.top = Top + y_ +'px';
+
+                    }
+
+                    // width = Math.max(width,10);
+                    // height = Math.max(height,10);
+                    // left = Math.min(left,maxLeft);
+                    // top = Math.min(top,maxTop );
+                    // oWrap.style.width = width+'px';
+                    // oWrap.style.height = height+'px';
+                    // oWrap.style.left = left+'px';
+                    // oWrap.style.top = top+'px';
+
+
+                }
+            }
+
+            document .onmouseup = function () {
+                this .onmousemove = null;
+                // console .log (this);
+            }
+        });
+    </script>
+</body>
+</html>
