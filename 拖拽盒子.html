@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>拖拽盒子</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #wrap{
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: darkslategray;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+
+    </div>
+
+    <script>
+        let oWrap = document .getElementById ("wrap");
+        oWrap .onmousedown = function (ev) {
+            let sX = ev .clientX ;
+            let sY = ev .clientY ;//获取当前鼠标位置
+
+            //获取当前到父级盒子
+            let fLeft = oWrap .offsetLeft ;
+            let fTop = oWrap .offsetTop ;
+
+            //移动时
+            document .onmousemove = function (ev) {
+                let mX = ev .clientX ;
+                let mY = ev .clientY ;
+
+                let x = mX - sX ;
+                let y = mY - sY ;
+
+                oWrap .style .left =fLeft + x +"px";
+                oWrap .style .top = fTop + y +"px";
+            };
+        };
+
+
+            oWrap .onmouseup = function () {
+                document .onmousemove = null;
+            };
+    </script>
+</body>
+</html>
