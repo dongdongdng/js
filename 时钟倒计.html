@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #wrap{
+            margin:50px auto;
+            width: 500px;
+            height: 110px;
+        }
+        #wrap div{
+            float: left;
+            overflow: hidden;
+            width: 92px;
+            height: 60px;
+        }
+        #wrap > span {
+            margin-top:3%;
+            float: left;
+            font-size: 25px;
+            font-weight: bold;
+        }
+        #wrap div p{
+            float: left;
+            margin-right:5px;
+            width: 40px;
+            height: 60px;
+            background:linear-gradient(#444444 ,#3a3a3a) ;
+            border-radius: 22%;
+        }
+        #wrap div span{
+            display: inline-block;
+            width: 40px;
+            font-size: 23px;
+            color: white;
+            line-height: 60px;
+            text-align: center ;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div id="ss">
+            <p><span class="first"></span><span class="second"></span></p>
+            <p><span class="first"></span><span class="second"></span></p>
+        </div>
+
+        <span class="txt">：</span>
+
+        <div id="hh">
+            <p><span class="first"></span><span class="second"></span></p>
+            <p><span class="first"></span><span class="second"></span></p>
+        </div>
+
+        <span class="txt">：</span>
+
+        <div id="ff">
+            <p><span class="first"></span><span class="second"></span></p>
+            <p><span class="first"></span><span class="second"></span></p>
+        </div>
+
+    </div>
+
+
+    <script>
+       let oFirst = [...document .querySelectorAll (".first")];
+
+       //获取本地时间
+        function fn() {
+            let newD =new Date ();
+            let SS =newD .getHours (),
+                HH =newD .getMinutes (),
+                FF =newD .getSeconds ();
+              HH = HH <10? "0"+HH :HH + "";
+            SS = SS <10? "0"+SS :SS + "";
+            FF = FF <10? "0"+FF :FF + "";
+            //把获取的时间返回出去
+            return [...SS,...HH,...FF ];
+        }
+
+        //定时器执行
+        setInterval (()=>{
+            let d= fn ();
+            oFirst .forEach ((ele,index)=>{
+                ele .innerHTML = d [index ];
+            })
+        },1000);
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
