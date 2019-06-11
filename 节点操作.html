@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>节点操作</title>
+
+    <style>
+        *{margin:0;padding:0;}
+        body {
+            width: 100%;
+            height: 580px;
+            background:linear-gradient(to bottom ,rgb(141,193,222) 0%,rgb(249,168,134) 100%) ;
+        }
+        #wrap{
+            margin:50px auto ;
+            width: 800px;
+            height: 530px;
+            user-select: none;
+            /*border:1px solid red;*/
+        }
+        #left ,#right{
+            float: left;
+            width: 400px;
+            height: 100%;
+        }
+        #left{
+            background-color: white;
+        }
+        #right{
+            background:rgba(0,0,0,.5 ) ;
+        }
+        #left .text{
+            padding:20px;
+            color: orangered;
+        }
+        #left .text span{
+            color: #000000;
+            cursor: pointer ;
+        }
+        #left .text span:hover{
+            color: orangered;
+        }
+        #left-content {
+            padding-left:20px;
+        }
+        #left-content p{
+            display: inline-block;
+            padding:5px;
+            margin:5px;
+            color: #ccc;
+            border:1px solid #ccc;
+        }
+        #left-content p i{
+            margin-left: 2px;
+            font-style:normal;
+        }
+        #left-content p i:hover{
+            cursor: pointer ;
+            color: orangered;
+        }
+        .right-content{
+            padding:20px;
+        }
+        .right-content p{
+            display: inline-block;
+            padding:7px;
+            margin:5px;
+            color: #fff;
+            border:1px solid #fff;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div id="left">
+                <p class ="text">
+                    热门目的地：
+                    <span>马来西亚</span>
+                    <span>泰国</span>
+                    <span>三亚</span>
+                    <span>新西兰</span>
+                    <span>云南</span>
+                </p>
+            <div id="left-content">
+                <!--<p>马来西亚|<i>X</i></p>-->
+                <!--<p>马来西亚|<i>X</i></p>-->
+            </div>
+
+        </div>
+
+        <div id="right">
+            <div class="right-content">
+                <!--<p>马来西亚</p>-->
+                <!--<p>马来西亚</p>-->
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        let oLeft = document .getElementById ("left-content"),
+            oRight = document .querySelector (".right-content"),
+            aSpan = [...document .querySelectorAll ("#left .text span")];
+        let ifAdd = [];//标记状态
+
+
+        // console .log (oLeft );
+
+        aSpan .forEach ((ele ,index)=>{
+            ele .onclick = function () {
+               if(ifAdd [index ])return ;
+                //左侧内容的创建节点
+                let oP = document .createElement ("p");
+                let text = document .createTextNode (ele .innerHTML +"|");
+                let oI = document .createElement ("i");
+                oI .innerHTML = "X";
+
+                    //X的点击事件
+                oI .onclick = function (){
+                    oLeft .removeChild (oP );
+                    oRight .removeChild (oP1 );
+
+                    ifAdd [index ]=false ;
+                };
+
+                oP .appendChild (text );
+                oP .appendChild (oI );
+                oLeft .appendChild (oP );
+                ifAdd [index ]= true ;
+
+                //右侧生成
+
+                //创建元素节点
+                let oP1 = document .createElement ("p");
+                oP1 .innerHTML = ele .innerHTML ;
+                oRight .appendChild (oP1 );
+
+            };
+
+        })
+    </script>
+</body>
+</html>
