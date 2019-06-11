@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>鼠标移入</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        ul,ol{
+            list-style: none;
+        }
+        #wrap{
+            margin:10px auto;
+            width: 693px;
+            height: 289px;
+            border:1px solid #444444;
+        }
+        #wrap ul{
+            padding:5px;
+        }
+        #wrap ul li{
+            margin:3px;
+            float: left;
+            border:1px solid #ccc;
+            opacity: .5;
+        }
+        #wrap ul .on{
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <ul>
+            <li ><img src="img/1.jpg " alt=""></li>
+            <li><img src="img/2.jpg " alt=""></li>
+            <li><img src="img/3.jpg " alt=""></li>
+            <li><img src="img/4.jpg " alt=""></li>
+            <li><img src="img/5.jpg " alt=""></li>
+            <li><img src="img/6.jpg " alt=""></li>
+            <li><img src="img/7.jpg " alt=""></li>
+            <li><img src="img/8.jpg " alt=""></li>
+            <li><img src="img/9.jpg " alt=""></li>
+            <li><img src="img/10.jpg " alt=""></li>
+        </ul>
+    </div>
+
+    <script>
+
+        let aLi = document .querySelectorAll ("#wrap ul li");
+        let len =aLi .length ;
+        for (let i=0;i<len ;i++){
+            aLi [i].onmouseenter =function () {
+                this.classList .add ("on");
+            };
+            aLi [i].onmouseout  =function () {
+                this.classList .remove ("on");
+            }
+        }
+
+
+
+    </script>
+</body>
+</html>
