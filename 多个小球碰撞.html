@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>多个小球碰撞</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #wrap{
+            position: absolute;
+            left: 10px;
+            top :20px;
+        }
+        p{
+           position: absolute;
+            left:0;
+            top:0;
+            width: 40px;
+            height: 40px;
+            background-color: darkorange;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <!--<p></p>-->
+    </div>
+
+    <script>
+        (function () {
+            let oWrap = document .getElementById ("wrap");
+            let oF = document .createDocumentFragment ();//用来存放节点
+
+
+
+            // //获取初始lefttop值
+            // let left = oWrap .offsetLeft ,
+            //     top = oWrap .offsetTop ;
+            //生成内容
+            for (let i=0;i<10;i++){
+                //创建节点
+                let oP = document .createElement ("p");
+                oF .appendChild (oP );
+                oWrap .appendChild (oF );
+            }
+
+            (function () {
+                let aP = [...oWrap .children ];
+                // console .log (aP );
+                //生成随机运动数
+                //随机运动初始速度
+                let speedArr = [];
+                aP .forEach ((ele,index )=>{
+                    speedArr [index ]={
+                        speedX :Math .floor (Math .random ()*10+2),
+                        speedY :Math .floor (Math .random ()*10+2)
+                    };
+                });
+                //
+                //获取最大限制的值
+                let maxL ,maxT;
+                window .onresize = function r() {
+                    maxL = window .innerWidth - 40;
+                    maxT = window .innerHeight -40;
+                    return r;
+                }();
+                // console .log (maxL ,maxT );
+
+
+                //运动函数
+                function m(){
+
+                    //遍历
+                    aP .forEach ((ele ,index)=>{
+                        let left = ele .offsetLeft+ speedArr [index ].speedX ;
+                        let top = ele .offsetTop+ speedArr [index ].speedY;
+
+                        if (left >=maxL ){
+                            left = maxL ;
+                            speedArr [index ].speedX = - speedArr [index ].speedX;
+                            rColor(ele );
+                        }
+                        if(left <=0){
+                            left = 0;
+                            speedArr [index ].speedX = - speedArr [index ].speedX;
+                            rColor(ele );
+                        }
+                        if(top>=maxT ){
+                            top = maxT ;
+                            speedArr [index ].speedY = - speedArr [index ].speedY ;
+                            rColor(ele );
+                        }
+                        if(top<=0){
+                            top =0;
+                            speedArr [index ].speedY = - speedArr [index ].speedY ;
+                            rColor(ele );
+                        }
+
+                        ele  .style .left = left + "px";
+                        ele .style .top = top + "px";
+                    });
+
+                    requestAnimationFrame (m);
+                }
+                requestAnimationFrame (m);
+
+                function rColor(ele) {
+                    let [r ,g ,b]=[
+                        Math .floor (Math .random ()*255+1),
+                        Math .floor (Math .random ()*255+1),
+                        Math .floor (Math .random ()*255+1)
+                    ];
+                    ele.style.background = `radial-gradient(#fff,rgb(${r},${g},${b}))`;
+                }
+            })();
+
+
+
+
+        })();
+
+    </script>
+</body>
+</html>
