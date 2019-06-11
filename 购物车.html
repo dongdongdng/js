@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>购物车</title>
+    <style>
+        *{
+            margin:0px;
+            padding:0px;
+        }
+        ul,ol{
+            list-style:none;
+        }
+        i{
+            font-style:normal;
+        }
+        #wrap{
+            overflow: hidden;
+            margin:20px auto;
+            width: 648px;
+            height: 483px;
+            border:1px solid #ccc;
+            user-select: none;
+        }
+        #title   p{
+            display: block;
+            float :left;
+            /*margin:0px;*/
+            width: 160px;
+            height: 30px;
+            font-size: 16px;
+            color: #fff;
+            text-align: center ;
+            line-height: 30px;
+            background-color: orangered;
+            border-right:2px solid hotpink;
+        }
+        #wrap .list{
+            margin-top:30px;
+        }
+        #wrap .list li{
+            /*margin-top:10px;*/
+            width: 100%;
+            height: 100px;
+            border-bottom: 1px solid lightpink;
+        }
+        #wrap .list li img{
+            float:left;
+            width: 160px;
+            height: 100px;
+        }
+        #wrap .list li p{
+            float: left;
+            width: 160px;
+            height: 100px;
+            font-size: 16px;
+            text-align: center ;
+            line-height: 100px;
+            border-left:2px solid hotpink;
+        }
+        .btn span{
+            margin:2px;
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            text-align: center ;
+            line-height: 15px;
+            background-color: #ccc;
+            cursor: pointer ;
+        }
+        #jiesuan{
+            width: 100%;
+            height: 50px;
+            background-color:orangered ;
+        }
+        #jiesuan .box{
+            float:right;
+            padding-right:10px;
+        }
+        #jiesuan .box p{
+            float: left;
+            margin-left:5px;
+            height: 50px;
+            line-height: 50px;
+            font-size: 16px;
+            color: white;
+        }
+        #jiesuan .box p span{
+            color:#cccccc;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div id="title">
+
+                <p>商品</p>
+                <p>单价</p>
+                <p>数量</p>
+                <p>小计</p>
+
+        </div>
+        <ul class="list">
+            <li>
+                <div class="content">
+                    <img src="images/美图手机.jpg" alt="">
+                    <p class="num">10</p>
+                    <p class="btn"><span class="sign">-</span><i>0</i><span class="push">+</span></p>
+                    <p class="txt">0</p>
+                </div>
+            </li>
+            <li>
+                <div class="content">
+                    <img src="images/美图手机.jpg" alt="">
+                    <p class="num">8</p>
+                    <p class="btn"><span class="sign">-</span><i>0</i><span class="push">+</span></p>
+                    <p class="txt">0</p>
+                </div>
+            </li>
+            <li>
+                <div class="content">
+                    <img src="images/美图手机.jpg" alt="">
+                    <p class="num">11</p>
+                    <p class="btn"><span class="sign">-</span><i>0</i><span class="push">+</span></p>
+                    <p class="txt">0</p>
+                </div>
+            </li>
+            <li>
+                <div class="content">
+                    <img src="images/美图手机.jpg" alt="">
+                    <p class="num">20</p>
+                    <p class="btn"><span class="sign">-</span><i>0</i><span class="push">+</span></p>
+                    <p class="txt">0</p>
+                </div>
+            </li>
+        </ul>
+        <div id="jiesuan">
+            <div class="box">
+                <p>已选中的商品 ：<span class="san">0</span>个</p>
+                <p>合计费用¥ <span class="fei">0</span></p>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        //重要变量
+        let oUnit = document .querySelectorAll ("#wrap .list li .num");
+        let aSign = document .querySelectorAll ("#wrap .content .btn .sign");
+        let aPush = document .querySelectorAll ("#wrap .content .btn .push");
+        let aI = document .querySelectorAll ("i");
+        let accounts = document .querySelectorAll ("#wrap .content .txt");
+        let oSan = document .querySelector (".san");
+        let oFei = document .querySelector (".fei");
+        let len = aPush .length ;
+            // console .log(oFei );
+
+
+        (function () {
+                //模拟后台数据
+            let date =[
+                {
+                    id : 0,
+                    num : 0,
+                    danjia :10
+                },
+
+                {
+                    id : 0,
+                    num : 0,
+                    danjia :8
+                },
+
+                {
+                    id : 0,
+                    num : 0,
+                    danjia :11
+                },
+                {
+                    id : 0,
+                    num : 0,
+                    danjia :20
+                }
+            ]
+
+            //按钮
+            for(let i=0;i<len ;i++){
+                //加号的点击事件
+                aPush [i].onclick = function () {
+                    //库存发生变化
+                    date [i].num ++;
+                    aI [i].innerHTML = date [i].num ;
+
+                    //小计发生变化
+                    accounts [i].innerHTML = date [i].num * date [i].danjia ;
+
+                    //已选中商品的变化 合计费用的结算
+                    let sum = 0;
+                    let p =0;
+                    for (let i=0;i<len ;i++){
+                        sum += date [i].num ;
+                        oSan .innerHTML = `${sum}` ;
+
+                        p += date [i].num * date [i].danjia;
+                        oFei .innerHTML =`${p}`;
+                    }
+
+
+
+
+                    //减号的点击事件
+                    aSign [i].onclick = function () {
+                        if (date [i].num <0)date [i].num = 0;
+                        //库存发生变化
+                        date [i].num --;
+                        aI [i].innerHTML = date [i].num ;
+
+                        //小计发生变化
+                        accounts [i].innerHTML = date [i].num * date [i].danjia ;
+
+                        //已选中商品的变化 合计费用的结算
+                        let sum = 0;
+                        let p =0;
+                        for (let i=0;i<len ;i++){
+                            sum += date [i].num ;
+                            oSan .innerHTML = `${sum}` ;
+
+                            p += date [i].num * date [i].danjia;
+                            oFei .innerHTML =`${p}`;
+                        }
+                    }
+                }
+            }
+        })();
+    </script>
+</body>
+</html>
